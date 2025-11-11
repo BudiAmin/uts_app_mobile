@@ -44,3 +44,10 @@ Aplikasi UTS Pemrograman Mobile
 
 ## Integrasi API
 - https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json
+
+## Dependecy
+
+- Cupertino icons
+- Curved Navigation Bar
+- Flutter_lints
+- Flutter HTTP
