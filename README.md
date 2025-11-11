@@ -1,16 +1,11 @@
-# uts_mobile
+# Aplikasi Uts
 
-A new Flutter project.
+Aplikasi UTS Pemrograman Mobile
 
-## Getting Started
+Nama : Budi Amin
 
-This project is a starting point for a Flutter application.
+Nrp : 15-2022-213
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Halaman Aplikasi 
+- Splash Screen
+![alt text]https://github.com/BudiAmin/uts_app_mobile/blob/main/images/
