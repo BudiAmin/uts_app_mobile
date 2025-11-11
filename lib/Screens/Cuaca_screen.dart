@@ -14,7 +14,6 @@ class _CuacaScreenState extends State<CuacaScreen> {
   @override
   void initState() {
     super.initState();
-    // Data dummy, bisa diganti dengan data dari API nantinya
     cuaca = CuacaModel(
       lokasi: 'Bandung, Indonesia',
       provinsi: 'Jawa Barat',
@@ -44,6 +43,11 @@ class _CuacaScreenState extends State<CuacaScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Color lightGreen = Colors.lightGreen.shade200;
+    final Color mediumGreen = Colors.green.shade600;
+    final Color darkGreen = Colors.green.shade800;
+    final Color accentColor = Colors.teal.shade700;
+
     return SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(
@@ -51,9 +55,8 @@ class _CuacaScreenState extends State<CuacaScreen> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Colors.blue.shade400,
-              Colors.blue.shade200,
-              Colors.cyan.shade100,
+              lightGreen,
+              Colors.white,
             ],
           ),
         ),
@@ -61,7 +64,6 @@ class _CuacaScreenState extends State<CuacaScreen> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              // Lokasi
               Card(
                 elevation: 4,
                 shape: RoundedRectangleBorder(
@@ -71,8 +73,7 @@ class _CuacaScreenState extends State<CuacaScreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: Row(
                     children: [
-                      Icon(Icons.location_on,
-                          color: Colors.blue.shade700, size: 28),
+                      Icon(Icons.location_on, color: darkGreen, size: 28),
                       const SizedBox(width: 10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,8 +99,6 @@ class _CuacaScreenState extends State<CuacaScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-
-              // Kartu Cuaca Utama
               Card(
                 elevation: 8,
                 shape: RoundedRectangleBorder(
@@ -113,8 +112,8 @@ class _CuacaScreenState extends State<CuacaScreen> {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        Colors.blue.shade300,
-                        Colors.blue.shade500,
+                        mediumGreen,
+                        darkGreen,
                       ],
                     ),
                   ),
@@ -135,7 +134,7 @@ class _CuacaScreenState extends State<CuacaScreen> {
                               child: const Icon(
                                 Icons.wb_sunny,
                                 size: 80,
-                                color: Colors.yellow,
+                                color: Colors.amber,
                               ),
                             ),
                           );
@@ -170,8 +169,6 @@ class _CuacaScreenState extends State<CuacaScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-
-              // Detail Cuaca
               Row(
                 children: [
                   Expanded(
@@ -179,7 +176,7 @@ class _CuacaScreenState extends State<CuacaScreen> {
                       icon: Icons.water_drop,
                       label: 'Kelembapan',
                       value: cuaca.kelembapan,
-                      color: Colors.blue,
+                      color: accentColor,
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -188,7 +185,7 @@ class _CuacaScreenState extends State<CuacaScreen> {
                       icon: Icons.air,
                       label: 'Kec. Angin',
                       value: cuaca.kecepatanAngin,
-                      color: Colors.teal,
+                      color: mediumGreen,
                     ),
                   ),
                 ],
@@ -201,7 +198,7 @@ class _CuacaScreenState extends State<CuacaScreen> {
                       icon: Icons.visibility,
                       label: 'Jarak Pandang',
                       value: cuaca.jarakPandang,
-                      color: Colors.purple,
+                      color: darkGreen,
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -210,14 +207,12 @@ class _CuacaScreenState extends State<CuacaScreen> {
                       icon: Icons.compress,
                       label: 'Tekanan',
                       value: cuaca.tekanan,
-                      color: Colors.orange,
+                      color: Colors.brown.shade400,
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 20),
-
-              // Prakiraan 7 Hari
               Card(
                 elevation: 4,
                 shape: RoundedRectangleBorder(
@@ -248,6 +243,7 @@ class _CuacaScreenState extends State<CuacaScreen> {
                 ),
               ),
               const SizedBox(height: 20),
+              const SizedBox(height: 85),
             ],
           ),
         ),
@@ -296,6 +292,8 @@ class _CuacaScreenState extends State<CuacaScreen> {
 
   Widget _buildForecastItem(
       String day, IconData icon, String maxTemp, String minTemp) {
+    final Color forecastIconColor = Colors.green.shade400;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
@@ -310,7 +308,7 @@ class _CuacaScreenState extends State<CuacaScreen> {
               ),
             ),
           ),
-          Icon(icon, color: Colors.blue.shade400, size: 28),
+          Icon(icon, color: forecastIconColor, size: 28),
           const Spacer(),
           Text(
             maxTemp,

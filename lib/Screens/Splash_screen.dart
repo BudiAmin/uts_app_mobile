@@ -53,14 +53,20 @@ class _SplashScreenState extends State<SplashScreen>
     final size = MediaQuery.of(context).size;
     final isSmall = size.height < 600; // contoh batas hp kecil
 
+    // --- MODIFIKASI: Mengubah Skema Warna menjadi Putih dan Hijau Gradasi Tua ---
+    const Color lightGreen = Color(0xFFC8E6C9); // Hijau muda sangat terang
+    final Color mediumGreen = Colors.green.shade600; // Hijau sedang
+    final Color darkGreen = Colors.green.shade800; // Hijau tua
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
+          // Gradien dari Hijau Tua ke Hijau Muda
           gradient: LinearGradient(
             colors: [
-              Colors.blue.shade800,
-              Colors.blue.shade400,
-              Colors.cyan.shade300,
+              darkGreen,
+              mediumGreen,
+              lightGreen,
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -94,7 +100,7 @@ class _SplashScreenState extends State<SplashScreen>
                         child: Icon(
                           Icons.mobile_friendly,
                           size: size.width * 0.18,
-                          color: Colors.blue,
+                          color: mediumGreen, // Icon berwarna hijau
                         ),
                       ),
                       SizedBox(height: size.height * 0.05),
@@ -119,7 +125,7 @@ class _SplashScreenState extends State<SplashScreen>
                       ),
                       SizedBox(height: size.height * 0.06),
 
-                      // Foto profil
+                      // Foto profil (asli)
                       Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,

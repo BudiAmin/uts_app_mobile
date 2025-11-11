@@ -21,6 +21,24 @@ class _BiodataScreenState extends State<BiodataScreen> {
       initialDate: DateTime.now(),
       firstDate: DateTime(1950),
       lastDate: DateTime.now(),
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.light(
+              primary: Colors.green.shade700,
+              onPrimary: Colors.white,
+              surface: Colors.white,
+              onSurface: Colors.black,
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.green.shade700,
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
     if (picked != null && picked != biodata.birthDate) {
       setState(() {
@@ -31,20 +49,23 @@ class _BiodataScreenState extends State<BiodataScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Color lightGreen = Colors.green.shade50;
+    final Color mediumGreen = Colors.green.shade400;
+    final Color darkGreen = Colors.green.shade700;
+
     return SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.blue.shade50, Colors.white],
+            colors: [Colors.white, lightGreen],
           ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              // Profile Header Card
               Card(
                 elevation: 8,
                 shape: RoundedRectangleBorder(
@@ -55,7 +76,9 @@ class _BiodataScreenState extends State<BiodataScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     gradient: LinearGradient(
-                      colors: [Colors.blue.shade400, Colors.cyan.shade300],
+                      colors: [darkGreen, mediumGreen],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                     ),
                   ),
                   child: Column(
@@ -72,14 +95,10 @@ class _BiodataScreenState extends State<BiodataScreen> {
                             ),
                           ],
                         ),
-                        child: const CircleAvatar(
-                          radius: 60,
-                          backgroundColor: Colors.white,
-                          child: Icon(
-                            Icons.person,
-                            size: 70,
-                            color: Colors.blue,
-                          ),
+                        child: CircleAvatar(
+                          radius: MediaQuery.of(context).size.width * 0.18,
+                          backgroundImage:
+                              const AssetImage('assets/images/foto.jpg'),
                         ),
                       ),
                       const SizedBox(height: 15),
@@ -112,8 +131,6 @@ class _BiodataScreenState extends State<BiodataScreen> {
                 ),
               ),
               const SizedBox(height: 30),
-
-              // Form Card
               Card(
                 elevation: 4,
                 shape: RoundedRectangleBorder(
@@ -124,67 +141,77 @@ class _BiodataScreenState extends State<BiodataScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'Informasi Personal',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                          color: darkGreen,
                         ),
                       ),
                       const SizedBox(height: 20),
-
-                      // Nama Lengkap
                       TextField(
                         controller: _nameController,
                         decoration: InputDecoration(
                           labelText: 'Nama Lengkap',
-                          prefixIcon: const Icon(Icons.person_outline),
+                          prefixIcon:
+                              Icon(Icons.person_outline, color: mediumGreen),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                BorderSide(color: mediumGreen, width: 2.0),
+                          ),
                           filled: true,
-                          fillColor: Colors.grey.shade50,
+                          fillColor: Colors.white,
                         ),
                         onChanged: (value) => biodata.name = value,
                       ),
                       const SizedBox(height: 15),
-
-                      // Email
                       TextField(
                         controller: _emailController,
                         decoration: InputDecoration(
                           labelText: 'Email',
-                          prefixIcon: const Icon(Icons.email_outlined),
+                          prefixIcon:
+                              Icon(Icons.email_outlined, color: mediumGreen),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                BorderSide(color: mediumGreen, width: 2.0),
+                          ),
                           filled: true,
-                          fillColor: Colors.grey.shade50,
+                          fillColor: Colors.white,
                         ),
                         keyboardType: TextInputType.emailAddress,
                         onChanged: (value) => biodata.email = value,
                       ),
                       const SizedBox(height: 15),
-
-                      // No. Telepon
                       TextField(
                         controller: _phoneController,
                         decoration: InputDecoration(
                           labelText: 'No. Telepon',
-                          prefixIcon: const Icon(Icons.phone_outlined),
+                          prefixIcon:
+                              Icon(Icons.phone_outlined, color: mediumGreen),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                BorderSide(color: mediumGreen, width: 2.0),
+                          ),
                           filled: true,
-                          fillColor: Colors.grey.shade50,
+                          fillColor: Colors.white,
                         ),
                         keyboardType: TextInputType.phone,
                         onChanged: (value) => biodata.phone = value,
                       ),
                       const SizedBox(height: 15),
-
-                      // Jenis Kelamin (Radio Button)
                       const Text(
                         'Jenis Kelamin',
                         style: TextStyle(
@@ -199,6 +226,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
                               title: const Text('Laki-laki'),
                               value: 'Laki-laki',
                               groupValue: biodata.gender,
+                              activeColor: mediumGreen,
                               onChanged: (value) {
                                 setState(() {
                                   biodata.gender = value;
@@ -211,6 +239,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
                               title: const Text('Perempuan'),
                               value: 'Perempuan',
                               groupValue: biodata.gender,
+                              activeColor: mediumGreen,
                               onChanged: (value) {
                                 setState(() {
                                   biodata.gender = value;
@@ -221,17 +250,21 @@ class _BiodataScreenState extends State<BiodataScreen> {
                         ],
                       ),
                       const SizedBox(height: 15),
-
-                      // Pendidikan (Dropdown)
                       DropdownButtonFormField<String>(
                         decoration: InputDecoration(
                           labelText: 'Pendidikan Terakhir',
-                          prefixIcon: const Icon(Icons.school_outlined),
+                          prefixIcon:
+                              Icon(Icons.school_outlined, color: mediumGreen),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                BorderSide(color: mediumGreen, width: 2.0),
+                          ),
                           filled: true,
-                          fillColor: Colors.grey.shade50,
+                          fillColor: Colors.white,
                         ),
                         value: biodata.education,
                         items: const [
@@ -253,20 +286,18 @@ class _BiodataScreenState extends State<BiodataScreen> {
                         },
                       ),
                       const SizedBox(height: 15),
-
-                      // Tanggal Lahir (Calendar)
                       InkWell(
                         onTap: () => _selectDate(context),
                         child: InputDecorator(
                           decoration: InputDecoration(
                             labelText: 'Tanggal Lahir',
-                            prefixIcon:
-                                const Icon(Icons.calendar_today_outlined),
+                            prefixIcon: Icon(Icons.calendar_today_outlined,
+                                color: mediumGreen),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                             filled: true,
-                            fillColor: Colors.grey.shade50,
+                            fillColor: Colors.white,
                           ),
                           child: Text(
                             biodata.birthDate == null
@@ -281,8 +312,6 @@ class _BiodataScreenState extends State<BiodataScreen> {
                         ),
                       ),
                       const SizedBox(height: 25),
-
-                      // Submit Button
                       SizedBox(
                         width: double.infinity,
                         height: 50,
@@ -296,7 +325,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
+                            backgroundColor: darkGreen,
                             foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -317,6 +346,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
                 ),
               ),
               const SizedBox(height: 20),
+              const SizedBox(height: 85),
             ],
           ),
         ),

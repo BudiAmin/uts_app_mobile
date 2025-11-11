@@ -4,8 +4,9 @@ import 'Splash_screen.dart';
 import 'kalkulator_screen.dart';
 import 'Berita_screen.dart';
 import 'Biodata_screen.dart';
-import 'Cuaca_screen.dart';
+import 'Gempa_screen.dart';
 import 'Kontak_screen.dart';
+import 'Cuaca_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -21,16 +22,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
     const BiodataScreen(),
     const KontakScreen(),
     const KalkulatorScreen(),
-    const CuacaScreen(),
+    const GempaScreen(),
     const BeritaScreen(),
+    const CuacaScreen(),
   ];
 
   final List<IconData> _navIcons = [
     Icons.person,
     Icons.contacts,
     Icons.calculate,
-    Icons.cloud,
+    Icons.public,
     Icons.article,
+    Icons.wb_sunny,
+  ];
+
+  final List<String> _titles = const [
+    'Profil Mahasiswa',
+    'Daftar Kontak',
+    'Kalkulator',
+    'Info Gempa BMKG',
+    'Berita Terkini',
+    'Info Cuaca',
   ];
 
   void _onItemTapped(int index) {
@@ -41,24 +53,41 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Color darkGreen = Colors.green.shade800;
+    final Color mediumGreen = Colors.green.shade600;
+
     return Scaffold(
-      extendBody: true, // agar efek curved terlihat bagus di atas background
+      extendBody: true,
       appBar: AppBar(
-        elevation: 0,
+        elevation: 4,
+        centerTitle: true,
+        title: Text(
+          _titles[_selectedIndex],
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
+          icon: const Icon(Icons.logout, color: Colors.white),
           onPressed: () {
-            // Kembali ke SplashScreen
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const SplashScreen()),
             );
           },
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 15.0),
+            child: Icon(_navIcons[_selectedIndex], color: Colors.white),
+          ),
+        ],
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.blue.shade700, Colors.cyan.shade400],
+              colors: [darkGreen, mediumGreen],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -69,13 +98,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
         duration: const Duration(milliseconds: 300),
         child: _fragments[_selectedIndex],
       ),
-
-      // Curved Navigation Bar
       bottomNavigationBar: CurvedNavigationBar(
         index: _selectedIndex,
         backgroundColor: Colors.transparent,
-        color: Colors.blue.shade700,
-        buttonBackgroundColor: Colors.cyan.shade400,
+        color: darkGreen,
+        buttonBackgroundColor: mediumGreen,
         height: 60,
         animationDuration: const Duration(milliseconds: 400),
         items: _navIcons

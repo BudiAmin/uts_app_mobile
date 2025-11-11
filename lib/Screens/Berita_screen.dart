@@ -11,7 +11,7 @@ class BeritaScreen extends StatelessWidget {
       time: '2 jam lalu',
       category: 'Teknologi',
       icon: Icons.computer,
-      categoryColor: Colors.blue,
+      categoryColor: Colors.teal,
     ),
     News(
       title: 'Ekonomi Digital Indonesia Tumbuh 20% di Tahun 2025',
@@ -61,7 +61,7 @@ class BeritaScreen extends StatelessWidget {
       time: '12 jam lalu',
       category: 'Budaya',
       icon: Icons.palette,
-      categoryColor: Colors.teal,
+      categoryColor: Colors.brown,
     ),
     News(
       title: 'Startup Indonesia Raih Pendanaan 100 Miliar Rupiah',
@@ -131,45 +131,42 @@ class BeritaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Color lightGreen = Colors.green.shade50;
+    final Color darkGreen = Colors.green.shade700;
+
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Colors.blue.shade50, Colors.white],
+          colors: [Colors.white, lightGreen],
         ),
       ),
       child: Column(
         children: [
-          // Header
-          Container(
-            padding: const EdgeInsets.all(20),
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
             child: Row(
               children: [
-                const Icon(Icons.article, size: 30, color: Colors.blue),
+                Icon(Icons.article, size: 30, color: darkGreen),
                 const SizedBox(width: 10),
-                const Text(
-                  'Berita Terkini',
+                Text(
+                  '${newsList.length} Berita',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blue,
+                    color: darkGreen,
                   ),
                 ),
                 const Spacer(),
-                IconButton(
-                  icon: const Icon(Icons.refresh),
-                  onPressed: () {},
-                  color: Colors.blue,
-                ),
+                Icon(Icons.refresh, color: darkGreen),
               ],
             ),
           ),
-
-          // News List
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 85),
               itemCount: newsList.length,
               itemBuilder: (context, index) {
                 final news = newsList[index];
@@ -217,7 +214,8 @@ class BeritaScreen extends StatelessWidget {
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.pop(context),
-                              child: const Text('Tutup'),
+                              child: Text('Tutup',
+                                  style: TextStyle(color: darkGreen)),
                             ),
                           ],
                         ),

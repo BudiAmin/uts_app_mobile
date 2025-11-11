@@ -10,7 +10,7 @@ class KontakScreen extends StatelessWidget {
       phone: '+62 812-3456-7890',
       email: 'ahmad.rizki@email.com',
       avatar: Icons.person,
-      color: Colors.blue,
+      color: Colors.teal,
     ),
     Kontak(
       name: 'Siti Nurhaliza',
@@ -94,7 +94,7 @@ class KontakScreen extends StatelessWidget {
       phone: '+62 824-5678-9012',
       email: 'muhammad.fajar@email.com',
       avatar: Icons.person,
-      color: Colors.lightBlue,
+      color: Colors.lightGreen,
     ),
     Kontak(
       name: 'Nadia Rahmawati',
@@ -114,55 +114,40 @@ class KontakScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Color lightGreen = Colors.green.shade50;
+    final Color darkGreen = Colors.green.shade700;
+
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Colors.blue.shade50, Colors.white],
+          colors: [Colors.white, lightGreen],
         ),
       ),
       child: Column(
         children: [
-          // Header
           Container(
-            padding: const EdgeInsets.all(20),
+            padding:
+                const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
             child: Row(
               children: [
-                const Icon(Icons.contacts, size: 30, color: Colors.blue),
+                Icon(Icons.contacts, size: 30, color: darkGreen),
                 const SizedBox(width: 10),
-                const Text(
-                  'Daftar Kontak',
+                Text(
+                  '${contacts.length} Kontak',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blue,
-                  ),
-                ),
-                const Spacer(),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: Colors.blue.shade100,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    '${contacts.length} Kontak',
-                    style: TextStyle(
-                      color: Colors.blue.shade700,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    color: darkGreen,
                   ),
                 ),
               ],
             ),
           ),
-
-          // List Kontak
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 85),
               itemCount: contacts.length,
               itemBuilder: (context, index) {
                 final contact = contacts[index];
@@ -251,7 +236,7 @@ class KontakScreen extends StatelessWidget {
                         ),
                         IconButton(
                           icon:
-                              Icon(Icons.message, color: Colors.blue.shade600),
+                              Icon(Icons.message, color: Colors.teal.shade600),
                           onPressed: () {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

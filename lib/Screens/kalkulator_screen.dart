@@ -24,6 +24,9 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
             ),
             padding: const EdgeInsets.all(20),
             elevation: 3,
+            shadowColor: color != null
+                ? color.withOpacity(0.5)
+                : Colors.grey.withOpacity(0.5),
           ),
           onPressed: () {
             setState(() {
@@ -44,6 +47,14 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Color lightGreen = Colors.green.shade50;
+    final Color mediumGreen = Colors.green.shade400;
+    final Color darkGreen = Colors.green.shade700;
+    final Color operatorColor = darkGreen;
+    final Color specialColor = mediumGreen;
+    final Color clearColor = Colors.red.shade600;
+    final Color equalsColor = Colors.lightGreen.shade700;
+
     return SafeArea(
       child: LayoutBuilder(
         builder: (context, constraints) {
@@ -52,7 +63,7 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Colors.blue.shade50, Colors.white],
+                colors: [Colors.white, lightGreen],
               ),
             ),
             child: Column(
@@ -101,24 +112,24 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
                           '√',
                           '÷'
                         ], colors: [
-                          Colors.red.shade400,
-                          null,
-                          Colors.blue.shade200,
-                          Colors.orange.shade400
+                          clearColor,
+                          specialColor,
+                          specialColor,
+                          operatorColor
                         ], textColors: [
                           Colors.white,
-                          null,
-                          null,
+                          Colors.white,
+                          Colors.white,
                           Colors.white
                         ]),
                         _buildRow(['7', '8', '9', '×'],
-                            colors: [null, null, null, Colors.orange.shade400],
+                            colors: [null, null, null, operatorColor],
                             textColors: [null, null, null, Colors.white]),
                         _buildRow(['4', '5', '6', '-'],
-                            colors: [null, null, null, Colors.orange.shade400],
+                            colors: [null, null, null, operatorColor],
                             textColors: [null, null, null, Colors.white]),
                         _buildRow(['1', '2', '3', '+'],
-                            colors: [null, null, null, Colors.orange.shade400],
+                            colors: [null, null, null, operatorColor],
                             textColors: [null, null, null, Colors.white]),
                         _buildRow([
                           'x²',
@@ -126,12 +137,12 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
                           '.',
                           '='
                         ], colors: [
-                          Colors.blue.shade200,
+                          specialColor,
                           null,
                           null,
-                          Colors.green.shade400
+                          equalsColor
                         ], textColors: [
-                          null,
+                          Colors.white,
                           null,
                           null,
                           Colors.white

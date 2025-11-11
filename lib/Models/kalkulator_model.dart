@@ -67,7 +67,6 @@ class KalkulatorModel {
       return;
     }
 
-    // Titik desimal (boleh ditekan hanya jika sedang input angka pecahan)
     if (buttonText == '.') {
       // Cegah input titik di awal atau titik ganda
       if (!output.contains('.') && _operator.isEmpty == false) {
