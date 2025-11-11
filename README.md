@@ -15,7 +15,7 @@ Aplikasi UTS Pemrograman Mobile
 
 - **Biodata**  
   Menampilkan informasi pribadi dan menyediakan form untuk menambahkan data, namun saat ini data belum tersimpan ke database.  
-  ![alt text](https://github.com/BudiAmin/uts_app_mobile/blob/main/images/Biodarta.jpg?raw=true)
+  ![alt text](https://github.com/BudiAmin/uts_app_mobile/blob/main/images/Biodata.jpg?raw=true)
 
 - **Daftar Kontak**  
   Menampilkan 15 daftar kontak, namun data masih berupa dummy.  
