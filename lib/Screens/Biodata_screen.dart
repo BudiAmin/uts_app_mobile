@@ -223,8 +223,8 @@ class _BiodataScreenState extends State<BiodataScreen> {
                         children: [
                           Expanded(
                             child: RadioListTile<String>(
-                              title: const Text('Laki-laki'),
-                              value: 'Laki-laki',
+                              title: const Text('Pria'),
+                              value: 'Pria',
                               groupValue: biodata.gender,
                               activeColor: mediumGreen,
                               onChanged: (value) {
@@ -236,8 +236,8 @@ class _BiodataScreenState extends State<BiodataScreen> {
                           ),
                           Expanded(
                             child: RadioListTile<String>(
-                              title: const Text('Perempuan'),
-                              value: 'Perempuan',
+                              title: const Text('Wanita'),
+                              value: 'Wanita',
                               groupValue: biodata.gender,
                               activeColor: mediumGreen,
                               onChanged: (value) {

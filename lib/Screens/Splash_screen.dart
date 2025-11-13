@@ -51,17 +51,15 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final isSmall = size.height < 600; // contoh batas hp kecil
+    final isSmall = size.height < 600;
 
-    // --- MODIFIKASI: Mengubah Skema Warna menjadi Putih dan Hijau Gradasi Tua ---
-    const Color lightGreen = Color(0xFFC8E6C9); // Hijau muda sangat terang
-    final Color mediumGreen = Colors.green.shade600; // Hijau sedang
-    final Color darkGreen = Colors.green.shade800; // Hijau tua
+    const Color lightGreen = Color(0xFFC8E6C9);
+    final Color mediumGreen = Colors.green.shade600;
+    final Color darkGreen = Colors.green.shade800;
 
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          // Gradien dari Hijau Tua ke Hijau Muda
           gradient: LinearGradient(
             colors: [
               darkGreen,
@@ -79,11 +77,9 @@ class _SplashScreenState extends State<SplashScreen>
               child: ScaleTransition(
                 scale: _scaleAnimation,
                 child: SingleChildScrollView(
-                  // agar tidak overflow di layar kecil
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Logo
                       Container(
                         padding: EdgeInsets.all(size.width * 0.05),
                         decoration: BoxDecoration(
@@ -146,7 +142,7 @@ class _SplashScreenState extends State<SplashScreen>
                       ),
                       SizedBox(height: size.height * 0.03),
 
-                      // Info mahasiswa
+                      // Info NIM, Nama, Prodi
                       Container(
                         padding: EdgeInsets.symmetric(
                           horizontal: size.width * 0.1,

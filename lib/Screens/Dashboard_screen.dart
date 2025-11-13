@@ -22,27 +22,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
     const BiodataScreen(),
     const KontakScreen(),
     const KalkulatorScreen(),
-    const GempaScreen(),
     const BeritaScreen(),
     const CuacaScreen(),
+    const GempaScreen(),
   ];
 
   final List<IconData> _navIcons = [
     Icons.person,
     Icons.contacts,
     Icons.calculate,
-    Icons.public,
     Icons.article,
     Icons.wb_sunny,
+    Icons.public,
   ];
 
   final List<String> _titles = const [
     'Profil Mahasiswa',
     'Daftar Kontak',
     'Kalkulator',
-    'Info Gempa BMKG',
     'Berita Terkini',
     'Info Cuaca',
+    'Info Gempa BMKG',
   ];
 
   void _onItemTapped(int index) {
